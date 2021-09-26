@@ -9,6 +9,7 @@ TagManager:
   - LevelPanel
   - GasText
   - GasFill
+  - WFCTraining
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: Road
     uniqueID: 3272458487
+    locked: 0
+  - name: Walls
+    uniqueID: 1906662803
     locked: 0
   - name: Obstacles
     uniqueID: 478090911

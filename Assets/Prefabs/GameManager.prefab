@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885095041187577157}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4529219, y: -0.3300633, z: -1.3823161}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,8 +58,11 @@ MonoBehaviour:
   - {fileID: 2084794080225269493, guid: e964731f06d76a94c8e051f58b64ccd0, type: 3}
   wallTiles:
   - {fileID: 3793762378786952140, guid: 9696f95341fed0b4986fbcee2e1e63e0, type: 3}
+  - {fileID: 8599217581024565466, guid: 1457482540b55074bb823bb7d6d5f969, type: 3}
+  - {fileID: 6515576809468435872, guid: bf58d7e2363ddc344b391c1bcea6d34d, type: 3}
   outerWallTiles:
   - {fileID: 722577607767152660, guid: d0caa5ea6e27094479366f4b5db00a36, type: 3}
+  - {fileID: 722577607767152660, guid: e5be8ab6fdc40dd41845fb1f34a8118d, type: 3}
   pickupTiles:
   - {fileID: 5167615274552963327, guid: 01254d390d3370f47834b491ef08d7f2, type: 3}
   obstacleTiles:
