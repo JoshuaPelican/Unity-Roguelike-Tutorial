@@ -39,9 +39,9 @@ public class BoardManager : MonoBehaviour
 
     private void InitializeGrid()
     {
-        for (int x = 1; x < columns-1; x++)
+        for (int x = 0; x < columns; x++)
         {
-            for (int y = 1; y < rows-1; y++)
+            for (int y = 0; y < rows; y++)
             {
                 gridPositions.Add(new Vector3(x * tileSize, y * tileSize, 0f));
             }
@@ -56,16 +56,14 @@ public class BoardManager : MonoBehaviour
         {
             for (int y = -1; y < rows+1; y++)
             {
-                GameObject chosenTile = roadTiles[Random.Range(0, roadTiles.Length)];
-
                 if(x == -1 || x == columns || y == -1 || y == rows)
                 {
-                    chosenTile = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
+                    GameObject chosenTile = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
+
+                    GameObject tileInstance = Instantiate(chosenTile, new Vector3(x * tileSize, y * tileSize, 0f), RandomCardinalRotation);
+
+                    tileInstance.transform.SetParent(boardHolder);
                 }
-
-                GameObject tileInstance = Instantiate(chosenTile, new Vector3(x, y, 0f), RandomCardinalRotation);
-
-                tileInstance.transform.SetParent(boardHolder);
             }
         }
     }
@@ -108,7 +106,7 @@ public class BoardManager : MonoBehaviour
         int obstacleCount = (int)Mathf.Log(level, 2f);
         LayoutTileAtRandom(obstacleTiles, obstacleCount, obstacleCount);
 
-        Instantiate(victoryTile, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
+        Instantiate(victoryTile, new Vector3((columns - 1) * tileSize, (rows - 1) * tileSize, 0f), Quaternion.identity);
 
     }
 }

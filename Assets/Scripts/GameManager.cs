@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
+
         SceneManager.sceneLoaded += LoadScene;
 
         boardManager = GetComponent<BoardManager>();
@@ -74,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        levelText.text = "You finnished " + level + " races, before runnng out of Gas.";
+        levelText.text = "You finished " + (level-1) + " races, before runnng out of Gas.";
         levelPanel.SetActive(true);
         enabled = false;
     }

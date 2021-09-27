@@ -9,7 +9,7 @@ public class Player : Vehicle
     public float maxGas = 100;
     public float idleGasEfficiency = 0.25f;
     public float drivingGasEffeciency = 1;
-    public int pointsPerBarrel = 20;
+    public int gasPerBarrel = 20;
 
     [Header("Level Settings")]
     public float restartLevelDelay = 1f;
@@ -43,7 +43,7 @@ public class Player : Vehicle
                 break;
 
             case "Barrel":
-                AddGas(pointsPerBarrel);
+                AddGas(gasPerBarrel);
                 collision.gameObject.SetActive(false);
                 break;
         }
@@ -67,7 +67,6 @@ public class Player : Vehicle
 
         if (isHorizontalInput)
         {
-            //Vector2 inputDirection = new Vector2(horizontal, vertical).normalized;
             base.Rotate(horizontal);
         }
 

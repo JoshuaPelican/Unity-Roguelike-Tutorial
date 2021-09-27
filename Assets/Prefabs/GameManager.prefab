@@ -48,18 +48,18 @@ MonoBehaviour:
   columns: 8
   tileSize: 1
   wallCount:
-    minimum: 5
-    maximum: 9
+    minimum: 6
+    maximum: 10
   pickupCount:
-    minimum: 1
+    minimum: 2
     maximum: 4
-  victoryTile: {fileID: 3439511169061064136, guid: f6f7aba883f919f44b66e077d2c7fa6a, type: 3}
+  victoryTile: {fileID: 3439511169061064136, guid: 7068408450f6080488fc2b4d1455b575, type: 3}
   roadTiles:
   - {fileID: 2084794080225269493, guid: e964731f06d76a94c8e051f58b64ccd0, type: 3}
   wallTiles:
   - {fileID: 3793762378786952140, guid: 9696f95341fed0b4986fbcee2e1e63e0, type: 3}
-  - {fileID: 8599217581024565466, guid: 1457482540b55074bb823bb7d6d5f969, type: 3}
   - {fileID: 6515576809468435872, guid: bf58d7e2363ddc344b391c1bcea6d34d, type: 3}
+  - {fileID: 8599217581024565466, guid: 1457482540b55074bb823bb7d6d5f969, type: 3}
   outerWallTiles:
   - {fileID: 722577607767152660, guid: d0caa5ea6e27094479366f4b5db00a36, type: 3}
   - {fileID: 722577607767152660, guid: e5be8ab6fdc40dd41845fb1f34a8118d, type: 3}
