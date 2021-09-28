@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
 
     private BoardManager boardManager;
+    private AudioSource musicSource;
 
     private void Start()
     {
@@ -42,6 +43,8 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += LoadScene;
 
         boardManager = GetComponent<BoardManager>();
+        musicSource = GetComponent<AudioSource>();
+
         InitializeGame();
     }
 
@@ -55,17 +58,25 @@ public class GameManager : MonoBehaviour
 
     private void InitializeGame()
     {
-        doingSetup = true;
+        if(SceneManager.GetActiveScene().name != "Menu")
+        {
+            doingSetup = true;
 
-        levelPanel = GameObject.FindWithTag("LevelPanel");
-        levelText = levelPanel.GetComponentInChildren<TextMeshProUGUI>();
+            if (!musicSource.isPlaying)
+            {
+                musicSource.Play();
+            }
 
-        levelText.text = "Race " + level;
-        levelPanel.SetActive(true);
+            levelPanel = GameObject.FindWithTag("LevelPanel");
+            levelText = levelPanel.GetComponentInChildren<TextMeshProUGUI>();
 
-        Invoke("HideLevelPanel", levelStartDelay);
+            levelText.text = "Race " + level;
+            levelPanel.SetActive(true);
 
-        boardManager.SetupScene(level);
+            Invoke("HideLevelPanel", levelStartDelay);
+
+            boardManager.SetupScene(level);
+        }
     }
 
     private void HideLevelPanel()
@@ -76,8 +87,26 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        doingSetup = true;
         levelText.text = "You finished " + (level-1) + " races, before runnng out of Gas.";
         levelPanel.SetActive(true);
-        enabled = false;
+
+        Invoke("ReturnToMenu", 5f);
+    }
+
+    private void ReturnToMenu()
+    {
+        musicSource.Stop();
+        SceneManager.LoadScene("Menu");
+        ResetValues();
+    }
+
+    private void ResetValues()
+    {
+        level = -1;
+        levelText.text = "Race " + level;
+        levelPanel.SetActive(false);
+        playerGasPoints = 100;
+        GameObject.FindWithTag("Player").GetComponent<Player>().AddGas(101);
     }
 }

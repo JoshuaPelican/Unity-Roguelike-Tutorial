@@ -8,8 +8,9 @@ public class Player : Vehicle
     [Header("Gas Settings")]
     public float maxGas = 100;
     public float idleGasEfficiency = 0.25f;
-    public float drivingGasEffeciency = 1;
+    public float drivingGasEffeciency = 1f;
     public int gasPerBarrel = 20;
+    public float barrelDestroyDelay = 1f;
 
     [Header("Level Settings")]
     public float restartLevelDelay = 1f;
@@ -44,7 +45,8 @@ public class Player : Vehicle
 
             case "Barrel":
                 AddGas(gasPerBarrel);
-                collision.gameObject.SetActive(false);
+                collision.enabled = false;
+                Destroy(collision.gameObject, barrelDestroyDelay);
                 break;
         }
     }
@@ -94,7 +96,7 @@ public class Player : Vehicle
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void AddGas(float amount)
+    public void AddGas(float amount)
     {
         gas = Mathf.Clamp(gas + amount, 0, maxGas);
         UpdateGasUI();

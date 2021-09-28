@@ -17,9 +17,8 @@ public abstract class Vehicle : MonoBehaviour
     public float lowCrashPitch = 0.9f;
     public float highCrashPitch = 1.1f;
     public float minorCrashThreshold = 0.5f;
-    public float mediumCrashThreshold = 1.5f;
+    public float majorCrashThreshold = 2f;
     public AudioClip minorCrash;
-    public AudioClip mediumCrash;
     public AudioClip majorCrash;
     public AudioSource crashSource;
 
@@ -57,19 +56,16 @@ public abstract class Vehicle : MonoBehaviour
         float hitMagnitude = collision.relativeVelocity.magnitude;
         crashSource.pitch = Random.Range(0.9f, 1.1f);
 
-        if(hitMagnitude <= minorCrashThreshold)
+        if(hitMagnitude >= minorCrashThreshold && hitMagnitude < majorCrashThreshold)
         {
             crashSource.clip = minorCrash;
         }
-        else if(hitMagnitude > minorCrashThreshold && hitMagnitude <= mediumCrashThreshold)
-        {
-            crashSource.clip = mediumCrash;
-        }
-        else if(hitMagnitude > mediumCrashThreshold)
+        else if(hitMagnitude >= majorCrashThreshold)
         {
             crashSource.clip = majorCrash;
         }
 
+        crashSource.Stop();
         crashSource.Play();
     }
 
@@ -89,7 +85,7 @@ public abstract class Vehicle : MonoBehaviour
 
         foreach (TrailRenderer trail in skids)
         {
-            trail.emitting = (rig.velocity.magnitude * force.magnitude) < skidVelocityThreshold || Mathf.Abs(torque) > skidTorqueThreshold;
+            trail.emitting = (rig.velocity.magnitude * currentDirection.magnitude) < skidVelocityThreshold || Mathf.Abs(torque) > skidTorqueThreshold;
         }
 
         rig.AddForce(force, ForceMode2D.Force);
